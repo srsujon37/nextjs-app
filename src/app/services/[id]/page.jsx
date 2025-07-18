@@ -48,7 +48,9 @@ export default function ServiceDetailPage({ params }) {
   ];
 
   const singleData = data.find((d) => d._id == id);
-  return (
+
+  if (singleData) {
+      return (
     <div>
       <h1>ServiceDetailPage</h1>
       <p>ID: {id}</p>
@@ -58,4 +60,12 @@ export default function ServiceDetailPage({ params }) {
 
     </div>
   );
+    
+  } else {
+    return <>
+    <h1 className="text-4xl font-bold text-red-400">Not Found</h1>
+    </>
+  }
+
+
 }
