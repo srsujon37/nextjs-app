@@ -1,7 +1,8 @@
-import Link from "next/link";
 import React from "react";
 
-export default function ServicesPage() {
+export default function ServiceDetailPage({ params }) {
+  const id = params.id;
+  
   const data = [
     {
       _id: "001",
@@ -43,24 +44,18 @@ export default function ServicesPage() {
       service_description:
         "Strategic email campaigns to improve engagement and grow your audience.",
     },
+    
   ];
 
+  const singleData = data.find((d) => d._id == id);
   return (
     <div>
-      <p className="font-bold text-2xl">Services</p>
-      {data.map((d) => {
-        return (
-          <Link href={`/services/${d._id}`}>
-            <div className="space-y-6 flex flex-col gap-5">
-              <img className="w-full h-80" src={d.service_image} alt="" />
-              <h3 className="font-bold text-3xl text-blue-500">
-                {d.service_name}
-              </h3>
-             
-            </div>
-          </Link>
-        );
-      })}
+      <h1>ServiceDetailPage</h1>
+      <p>ID: {id}</p>
+      <img className="w-full h-80" src={singleData.service_image} alt="" />
+      <h2 className="font-bold text-blue-500 text-4xl">-{singleData.service_name}</h2>
+      <p className="text-gray-500 text-xl">{singleData.service_description}</p>
+
     </div>
   );
 }
